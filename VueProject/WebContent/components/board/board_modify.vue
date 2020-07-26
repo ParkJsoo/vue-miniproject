@@ -15,21 +15,21 @@
 						</div>
 						<div class="form-group">
 							<label for="board_subject">제목</label>
-							<input type="text" id="board_subject" v-model="board_subject" class="form-control" disabled="disabled"/>
+							<input type="text" id="board_subject" v-model="board_subject" class="form-control" />
 						</div>
 						<div class="form-group">
 							<label for="board_content">내용</label>
-							<textarea id="board_content" v-model="board_content" class="form-control" rows="10" style="resize:none" disabled="disabled"></textarea>
+							<textarea id="board_content" v-model="board_content" class="form-control" rows="10" style="resize:none"></textarea>
 						</div>
 						<div class="form-group">
 							<label for="board_file">첨부 이미지</label>
-							<img :src="board_image" width="100%"/>						
+							<img :src='board_image' width="100%"/>	
+							<input type="file" name="board_file" id="board_file" class="form-control" accept="image/*"/>					
 						</div>
 						<div class="form-group">
 							<div class="text-right">
-								<router-link to='/board_main' class="btn btn-primary">목록보기</router-link>
-								<router-link to='/board_modify' class="btn btn-info">수정하기</router-link>
-								<router-link to='/board_delete' class="btn btn-danger">삭제하기</router-link>
+								<button type="button" @click='check_input' class="btn btn-primary">수정완료</button>
+								<router-link to='/board_read' class="btn btn-info">취소</router-link>
 							</div>
 						</div>
 					</div>
@@ -48,6 +48,23 @@
 				board_subject : '새로운 제목',
 				board_content : '새로운 내용',
 				board_image : 'image/logo.png'
+			}
+		},
+		methods : {
+			check_input : function(){
+				if(this.board_subject.length == 0){
+					alert("제목을 입력해주세요")
+					$("#board_subject").focus()
+					return
+				}
+				if(this.board_content.length == 0){
+					alert("내용을 입력해주세요")
+					$("#board_content").focus()
+					return
+				}
+				
+				alert('수정되었습니다')
+				this.$router.push('/board_read')
 			}
 		}
 	}
