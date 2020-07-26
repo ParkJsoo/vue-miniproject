@@ -27,6 +27,25 @@ var router = new VueRouter({
 			path : '/board_write',
 			component : httpVueLoader('components/board/board_write.vue')
 		},
+		{
+			path : '/login',
+			component : httpVueLoader('components/user/login.vue')
+		},
+		{
+			path : '/join',
+			component : httpVueLoader('components/user/join.vue')
+		},
+		{
+			path : '/user_modify',
+			component : httpVueLoader('components/user/user_modify.vue')
+		},
+		{
+			path : '/logout',
+			beforeEnter(to, from, next){
+				alert('로그아웃 되었습니다')
+				next('/')
+			}
+		},
 	],
 	scrollBehavior(to, from, savedPosition){
 		return {

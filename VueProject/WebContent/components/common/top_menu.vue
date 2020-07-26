@@ -24,16 +24,16 @@
 			
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a href="login.html" class="nav-link">로그인</a>
+					<router-link to='/login' class="nav-link">로그인</router-link>
 				</li>
 				<li class="nav-item">
-					<a href="join.html" class="nav-link">회원가입</a>
+					<router-link to='/join' class="nav-link">회원가입</router-link>
 				</li>
 				<li class="nav-item">
-					<a href="modify_user.html" class="nav-link">정보수정</a>
+					<router-link to='user_modify' class="nav-link">정보수정</router-link>
 				</li>
 				<li class="nav-item">
-					<a href="index.html" class="nav-link">로그아웃</a>
+					<router-link to='logout' class="nav-link">로그아웃</router-link>
 				</li>
 			</ul>
 		</div>
