@@ -9,16 +9,16 @@
 		<div class="collapse navbar-collapse" id="navMenu">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a href="board_main.html" class="nav-link">자유게시판</a>
+					<router-link to='/board_main' class="nav-link">자유게시판</router-link>
 				</li>
 				<li class="nav-item">
-					<a href="board_main.html" class="nav-link">유머게시판</a>
+					<router-link to='/board_main' class="nav-link">유머게시판</router-link>
 				</li>
 				<li class="nav-item">
-					<a href="board_main.html" class="nav-link">정치게시판</a>
+					<router-link to='/board_main' class="nav-link">정치게시판</router-link>
 				</li>
 				<li class="nav-item">
-					<a href="board_main.html" class="nav-link">스포츠게시판</a>
+					<router-link to='/board_main' class="nav-link">스포츠게시판</router-link>
 				</li>
 			</ul>
 			
