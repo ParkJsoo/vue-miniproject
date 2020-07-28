@@ -38,7 +38,7 @@
 			}
 		},
 		created(){
-			axios.get('server/get_board_info.jsp').then((response) => {
+			axios.get('server/board/get_board_info.jsp').then((response) => {
 				this.server_data = response.data
 			})
 		}
