@@ -37,8 +37,8 @@
 	module.exports = {
 		data : function(){
 			return {
-				user_name : '사용자이름',
-				user_id : '사용자아이디',
+				user_name : this.$store.state.user_name,
+				user_id : this.$store.state.user_id,
 				user_pw : '',
 				user_pw2 : ''
 			}
@@ -65,37 +65,24 @@
 					return
 				}
 				
-				alert('정보가 수정되었습니다')
-				this.user_pw = ''
-				this.user_pw2 = ''
+				var params = new URLSearchParams();
+				params.append('user_idx', this.$store.state.user_idx)
+				params.append('user_pw', this.user_pw)
+				
+				axios.post('server/user/user_modify.jsp', params).then((response) => {
+					if(response.data.result == true){
+						alert('정보가 수정되었습니다')
+						this.user_pw = ''
+						this.user_pw2 = ''
+					}
+				})
+			}
+		},
+		created() {
+			if(this.$store.state.user_login_chk == false){
+				alert('잘못된 접근입니다')
+				this.$router.push('/')
 			}
 		}
-	}
-	function check_input(){
-		
-		var user_pw = $("#user_pw").val();
-		var user_pw2 = $("#user_pw2").val();
-		
-		if(user_pw.length < 4){
-			alert("비밀번호는 4글자 이상입니다")
-			$("#user_pw").val("")
-			$("#user_pw").focus()
-			return false
-		}
-		if(user_pw2.length < 4){
-			alert("비밀번호는 4글자 이상입니다")
-			$("#user_pw2").val("")
-			$("#user_pw2").focus()
-			return false
-		}
-		if(user_pw != user_pw2){
-			alert("비밀번호가 일치하지 않습니다")
-			$("#user_pw").val("")
-			$("#user_pw2").val("")
-			$("#user_pw").focus()
-			return false
-		}
-		
-		return true
 	}
 </script>
