@@ -53,8 +53,35 @@
 					return
 				}
 				
-				alert('로그인되었습니다')
-				this.$router.push('/')
+				var params = new URLSearchParams()
+				params.append('user_id', this.user_id)
+				params.append('user_pw', this.user_pw)
+				
+				axios.post('server/user/login.jsp', params).then((response) => {
+					if(response.data.result == false){
+						alert('로그인에 실패하였습니다')
+						this.user_id = ''
+						this.user_pw = ''
+						this.is_login_fail = true
+					} else {
+						alert('로그인 되었습니다')
+						
+						// 서버가 전달한 데이터를 store에 담는다.
+						this.$store.state.user_login_chk = true
+						this.$store.state.user_id = response.data.user_id
+						this.$store.state.user_name = response.data.user_name
+						this.$store.state.user_idx = response.data.user_idx
+						
+						// 세션스토리지에도 저장한다(새로고침 대비)
+						sessionStorage.user_login_chk = true
+						sessionStorage.user_id = response.data.user_id
+						sessionStorage.user_name = response.data.user_name
+						sessionStorage.user_idx = response.data.user_idx
+						
+						this.$router.push('/')
+					}
+				})
+				
 			}
 		}
 	}
