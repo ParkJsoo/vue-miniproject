@@ -14,7 +14,7 @@ var router = new VueRouter({
 			component : httpVueLoader('components/main/main.vue')
 		},
 		{
-			path : '/board_main',
+			path : '/board_main/:board_idx',
 			component : httpVueLoader('components/board/board_main.vue')
 		},
 		{
@@ -33,7 +33,7 @@ var router = new VueRouter({
 			}
 		},
 		{
-			path : '/board_write',
+			path : '/board_write/:board_idx',
 			component : httpVueLoader('components/board/board_write.vue')
 		},
 		{

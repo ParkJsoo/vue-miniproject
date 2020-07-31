@@ -49,8 +49,20 @@
 					$("#board_content").focus()
 					return
 				}
-				alert('저장되었습니다')
-				this.$router.push('/board_read')
+				
+				var params = new FormData();
+				params.append('board_writer_idx', this.$store.state.user_idx)
+				params.append('board_subject', this.board_subject)
+				params.append('board_content', this.board_content)
+				params.append('board_file', $('#board_file')[0].files[0])
+				params.append('content_board_idx', this.$route.params.board_idx)
+				
+				axios.post('server/board/add_content.jsp', params).then((response) => {
+					if(response.data.result == true){
+						alert('작성이 완료되었습니다')
+						this.$router.push('/board_read')
+					}
+				})
 			}
 		}
 	}
