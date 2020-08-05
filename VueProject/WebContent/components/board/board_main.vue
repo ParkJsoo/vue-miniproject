@@ -26,24 +26,13 @@
 				<div class="d-none d-md-block">
 					<ul class="pagination justify-content-center">
 						<li class="page-item">
-							<router-link to='/board_main' class="page-link">이전</router-link>
+							<router-link :to="'/board_main/' + $route.params.board_idx + '/' + server_data.pre" class="page-link">이전</router-link>
 						</li>
-						<li class="page-item" v-for='a1 in temp_list'>
-							<router-link to='/board_main' class="page-link">{{a1}}</router-link>
-						</li>
-						<li class="page-item">
-							<router-link to='/board_main' class="page-link">다음</router-link>
-						</li>
-					</ul>
-				</div>
-				
-				<div class="d-block d-md-none">
-					<ul class="pagination justify-content-center">
-						<li class="page-item">
-							<router-link to='/board_main' class="page-link">이전</router-link>
+						<li class="page-item" v-for='a1 in server_data.page_array'>
+							<router-link :to="'/board_main/' + $route.params.board_idx + '/' + a1" class="page-link">{{a1}}</router-link>
 						</li>
 						<li class="page-item">
-							<router-link to='/board_main' class="page-link">다음</router-link>
+							<router-link :to="'/board_main/' + $route.params.board_idx + '/' + server_data.next" class="page-link">다음</router-link>
 						</li>
 					</ul>
 				</div>
@@ -76,6 +65,7 @@
 			get_board_data : function(){
 				var params = new URLSearchParams()
 				params.append('board_idx', this.$route.params.board_idx)
+				params.append('page', this.$route.params.page)
 				
 				axios.post('server/board/get_board_list.jsp', params).then((response) => {
 					this.server_data = response.data
