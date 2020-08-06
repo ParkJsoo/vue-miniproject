@@ -26,10 +26,15 @@ var router = new VueRouter({
 			component : httpVueLoader('components/board/board_modify.vue')
 		},
 		{
-			path : '/board_delete',
+			path : '/board_delete/:board_idx/:page/:content_idx',
 			beforeEnter(to, from, next){
-				alert('삭제되었습니다')
-				next('/board_main')
+				var params = new URLSearchParams()
+				params.append('content_idx', to.params.content_idx)
+				
+				axios.post('server/board/delete_content.jsp', params).then((response) => {
+					alert('삭제되었습니다')
+					next('/board_main/' + to.params.board_idx + '/' + to.params.page)
+				})
 			}
 		},
 		{

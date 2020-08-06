@@ -68,9 +68,10 @@
 					params.append('content_file', $('#board_file')[0].files[0])
 				}
 				
-				axios.post('server/board/modify_content.jsp', params).this((response) => {
+				axios.post('server/board/modify_content.jsp', params).then((response) => {
 					if(response.data.result == true){
 						alert('수정되었습니다')
+						this.$router.push('/board_read/' + this.$route.params.board_idx + '/' + this.$route.params.page + '/' + this.$route.params.content_idx)
 					}
 				})
 			}
