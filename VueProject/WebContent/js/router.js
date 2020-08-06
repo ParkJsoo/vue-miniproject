@@ -22,7 +22,7 @@ var router = new VueRouter({
 			component : httpVueLoader('components/board/board_read.vue')
 		},
 		{
-			path : '/board_modify',
+			path : '/board_modify/:board_idx/:page/:content_idx',
 			component : httpVueLoader('components/board/board_modify.vue')
 		},
 		{
